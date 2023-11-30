@@ -412,7 +412,7 @@
           <p>Sit sint consectetur velit. Quisquam quos quisquam cupiditate</p>
         </div>
 
-        <div class="row">
+        <div class="row" id="members">
 
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member">
@@ -755,6 +755,36 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response=>response.json())
+    .then(json=> {
+      json.forEach(user=> {
+        var content=`<div class="member">
+              <div class="member-img">
+                <img src="https://cdn.pixabay.com/photo/2023/11/26/20/58/horse-8414296_640.jpg" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>${user.name}</h4>
+                <span>Chief Executive Officer</span>
+              </div>
+            </div>`
+
+            var teams=document.getElementById('members');
+            var div=document.createElement('div');
+            div.className='col-lg-3 col-md-6 d-flex align-items-stretch';
+            div.innerHTML=content;
+            teams.appendChild(div);
+      })
+    })
+    </script>
+
 
 </body>
 
